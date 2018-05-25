@@ -7,9 +7,9 @@ import router from './router'
 import 'vant/lib/vant-css/index.css'
 Vue.use(Vant)*/
 
-import {Button} from 'vant'
+import {Button, Row, Col} from 'vant'
 
-Vue.use(Button)
+Vue.use(Button).use(Row).use(Col)
 
 Vue.config.productionTip = false
 
