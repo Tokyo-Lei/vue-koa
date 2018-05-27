@@ -48,7 +48,7 @@
         color: #FFFFFF;
     }
 
-    .location-icon{qq
+    .location-icon{
         padding-top: 0.2rem;
         padding-left: 0.2rem;
     }
