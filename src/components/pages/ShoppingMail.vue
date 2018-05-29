@@ -35,23 +35,48 @@
         <div>
             <img v-lazy="adBanner" width="100%" alt="">
         </div>
+        <!--Recommend goods area-->
+        <div class="recommend-area">
+            <div class="recommend-title">
+                商品推荐
+            </div>
+            <div class="recommend-body">
+                <swiper>
+                    <swiper-slide>
+                        <div class="recommend-item">
+                            <img src="" width="80%" alt="">
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+    import 'swiper/dist/css/swiper.css'
+    import {swiper, swiperSlide} from 'vue-awesome-swiper'
 
     export default {
         name: "ShoppingMail",
         data() {
             return {
-                msg: 'stone',
-                locationIcon: require('../../assets/images/location.png'),
-                bannerPicArr: [],
-                category: [],
-                adBanner: ''
+                locationIcon: require('../../assets/images/location.png'),//定位图
+                bannerPicArr: [],//轮播图数据
+                category: [],//导航数据
+                adBanner: '',//广告
+                recommendGoods: [],//推荐商品
+
             }
         },
+        components: {swiper, swiperSlide},//推荐区域轮播组件
         created() {
             axios({
                 url: 'https://www.easy-mock.com/mock/5b0cc25d60480528d24b9bcc/vue-koa/index', /* easy-mock创建的首页接口地址*/
@@ -59,9 +84,10 @@
             }).then(res => {
                 console.log(res);
                 if (res.status == 200) {
-                    this.category = res.data.data.category;
-                    this.adBanner = res.data.data.advertesPicture.PICTURE_ADDRESS;
-                    this.bannerPicArr = res.data.data.slides;
+                    this.category = res.data.data.category;//导航图
+                    this.adBanner = res.data.data.advertesPicture.PICTURE_ADDRESS;//广告图
+                    this.bannerPicArr = res.data.data.slides;//轮播图
+                    this.recommendGoods = res.data.data.recommend;//推荐商品
                 }
             }).catch(err => {
                 console.log(err);
@@ -115,5 +141,17 @@
         font-size: 12px;
         text-align: center;
         flex: 1;
+    }
+
+    .recommend-area {
+        background-color: #ffffff;
+        margin-top: 0.3rem;
+    }
+
+    .recommend-title {
+        border-bottom: 1px solid #eee;
+        padding: 0.2rem;
+        font-size: 14px;
+        color: #e5017d
     }
 </style>
