@@ -17,9 +17,9 @@
         </div>
         <!--swiper area-->
         <div class="swiper-area">
-            <van-swipe :autoplay="1000">
+            <van-swipe :autoplay="1000">   <!--vant的swiper组件， 绑定轮播时间间隔-->
                 <van-swipe-item v-for="(banner, index) in bannerPicArr" :key="index">
-                    <img v-lazy="banner.imageUrl" width="100%" alt="">
+                    <img v-lazy="banner.imageUrl" width="100%" alt="">  <!--绑定图片懒加载-->
                 </van-swipe-item>
             </van-swipe>
         </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: "ShoppingMail",
         data() {
@@ -39,6 +40,16 @@
                     {imageUrl: 'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic003.jpg'},
                 ]
             }
+        },
+        created(){
+            axios({
+                url: 'https://www.easy-mock.com/mock/5b0cc25d60480528d24b9bcc/vue-koa/index',  /* easy-mock创建的首页接口地址*/
+                method: 'get'
+            }).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
         }
     }
 </script>
