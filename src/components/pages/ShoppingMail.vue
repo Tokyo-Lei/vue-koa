@@ -41,16 +41,12 @@
                 商品推荐
             </div>
             <div class="recommend-body">
-                <swiper>
-                    <swiper-slide>
+                <swiper :options="swiperOptions"> <!--设置属性-->
+                    <swiper-slide v-for="(item, index) in recommendGoods" :key="index">
                         <div class="recommend-item">
-                            <img src="" width="80%" alt="">
-                            <div>
-
-                            </div>
-                            <div>
-            
-                            </div>
+                            <img :src="item.image" width="80%" alt="">
+                            <div>{{item.goodsName}}</div>
+                            <div>￥{{item.price}}(￥{{item.mallPrice}})</div>
                         </div>
                     </swiper-slide>
                 </swiper>
@@ -73,6 +69,9 @@
                 category: [],//导航数据
                 adBanner: '',//广告
                 recommendGoods: [],//推荐商品
+                swiperOptions: {
+                    slidesPerView: 3, //一行三列
+                },//swiper属性
 
             }
         },
@@ -153,5 +152,16 @@
         padding: 0.2rem;
         font-size: 14px;
         color: #e5017d
+    }
+
+    .recommend-body {
+        border-bottom: 1px solid #eee;
+    }
+
+    .recommend-item {
+        width: 99%;
+        border-right: 1px solid #eee;
+        font-size: 12px;
+        text-align: center;
     }
 </style>
